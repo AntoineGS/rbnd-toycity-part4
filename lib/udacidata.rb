@@ -22,7 +22,8 @@ class Udacidata
     file = CSV.read(@@data_path)
     products=[]
     file.drop(1).each do |line|
-      products.push(create(id: line[0], brand: line[1], name: line[2], price: line[3]))
+      products.push(create(id: line[0], brand: line[1],
+                           name: line[2], price: line[3]))
     end
     products
   end
@@ -33,5 +34,24 @@ class Udacidata
 
   def self.last(number = 1)
     number==1 ? all.last : all.pop(number)
+  end
+
+  def self.find(id)
+    all.find{|product| product.id == id}
+  end
+
+  def self.destroy(id)
+    products = all
+    reject = nil
+    CSV.open(@@data_path, "wb") do |csv|
+      csv << ["id", "brand", "product", "price"]
+    end
+    CSV.open(@@data_path, "a+") do |csv|
+      products.each do |product|
+        product.id == id ? reject = product : csv <<
+        [product.id, product.brand, product.name, product.price]
+      end
+    end
+    reject
   end
 end
