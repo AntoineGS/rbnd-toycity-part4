@@ -37,20 +37,28 @@ class Udacidata
   end
 
   def self.find(id)
-    all.find{|product| product.id == id}
+    object = nil
+    begin
+      raise ProductNotFoundError, "Exception Raised: Product not found" unless object = all.find{|product| product.id == id}
+    rescue Exception => e
+      puts e.message
+    end
+    object
   end
 
   def self.destroy(id)
     products = all
-    reject = nil
-    reset_file
-    CSV.open(@@data_path, "a+") do |csv|
-      products.each do |product|
-        product.id == id ? reject = product : csv <<
-        [product.id, product.brand, product.name, product.price]
+      if !find(id).nil? then
+        reject = nil
+        reset_file
+        CSV.open(@@data_path, "a+") do |csv|
+          products.each do |product|
+            product.id == id ? reject = product : csv <<
+            [product.id, product.brand, product.name, product.price]
+          end
+        end
+        reject
       end
-    end
-    reject
   end
 
   def self.where(options={})

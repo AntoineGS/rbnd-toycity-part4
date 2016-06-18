@@ -1,4 +1,2 @@
-# Your custom error classes will be placed here
-Class ProductNotFoundError
-
+class ProductNotFoundError < StandardError
 end

@@ -13,7 +13,7 @@ module Analyzable
       output << "  - #{key}: #{qty}\n" end
     output << "Inventory by Name:\n"
     count_by_name(products).each do |key,qty|
-      output << "  - #{key}: #{qty}\n" end
+      output << "  - #{key.capitalize}: #{qty}\n" end
     output
   end
 
