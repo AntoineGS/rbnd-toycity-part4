@@ -21,7 +21,7 @@ module Analyzable
     brand_summary=Hash.new
     products.each do |product|
       if brand_summary.keys.include?(product.brand)
-        brand_summary[product.brand]=+1
+        brand_summary[product.brand]+=1
       else brand_summary[product.brand]=1
       end
     end
@@ -32,7 +32,7 @@ module Analyzable
     name_summary=Hash.new
     products.each do |product|
       if name_summary.keys.include?(product.name)
-        name_summary[product.name]=+1
+        name_summary[product.name]+=1
       else name_summary[product.name]=1
       end
     end
