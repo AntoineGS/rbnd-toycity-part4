@@ -17,6 +17,15 @@ class Product < Udacidata
     @price = opts[:price]
   end
 
+  def update(options={})
+    @price = options[:price] if options[:price]
+    @brand = options[:brand] if options[:brand]
+    @name = options[:name] if options[:name]
+    Product.destroy(@id)
+    Product.create(id: @id, brand: @brand, name: @name, price: @price)
+    self
+  end
+
   private
 
     # Reads the last line of the data file, and gets the id if one exists

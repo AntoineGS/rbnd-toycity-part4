@@ -43,9 +43,7 @@ class Udacidata
   def self.destroy(id)
     products = all
     reject = nil
-    CSV.open(@@data_path, "wb") do |csv|
-      csv << ["id", "brand", "product", "price"]
-    end
+    reset_file
     CSV.open(@@data_path, "a+") do |csv|
       products.each do |product|
         product.id == id ? reject = product : csv <<
@@ -53,5 +51,25 @@ class Udacidata
       end
     end
     reject
+  end
+
+  def self.find_by_brand(brand)
+    all.find{|product| product.brand == brand}
+  end
+
+  def self.find_by_name(name)
+    all.find{|product| product.name == name}
+  end
+
+  def self.where(options={})
+    case when options[:brand]
+      all.select{|product| product.brand == options[:brand]}
+    end
+  end
+
+  def self.reset_file
+    CSV.open(@@data_path, "wb") do |csv|
+      csv << ["id", "brand", "product", "price"]
+    end
   end
 end
