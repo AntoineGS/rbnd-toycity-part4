@@ -7,9 +7,13 @@ module Analyzable
 
   def print_report(products)
     output = String.new
-    products.each do |product|
-      output << "ID: #{product.id}, Product: #{product.name}, Brand: #{product.brand}, Price: #{product.price} \n"
-    end
+    output << "Average Price: #{average_price(products)}\n"
+    output << "Inventory by Brand:\n"
+    count_by_brand(products).each do |key,qty|
+      output << "  - #{key}: #{qty}\n" end
+    output << "Inventory by Name:\n"
+    count_by_name(products).each do |key,qty|
+      output << "  - #{key}: #{qty}\n" end
     output
   end
 
