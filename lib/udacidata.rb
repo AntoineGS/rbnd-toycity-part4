@@ -64,6 +64,10 @@ class Udacidata
   def self.where(options={})
     case when options[:brand]
       all.select{|product| product.brand == options[:brand]}
+    when options[:name]
+      all.select{|product| product.name == options[:name]}
+    when options[:price]
+      all.select{|product| product.price == options[:price]}
     end
   end
 
