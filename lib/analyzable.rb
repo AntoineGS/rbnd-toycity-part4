@@ -11,7 +11,14 @@ module Analyzable
     end
   end
 
-  def count_by_brand
-
+  def count_by_brand(products)
+    brand_summary=Hash.new
+    products.each do |product|
+      if brand_summary.keys.include?(product.brand)
+        brand_summary[product.brand]=+1
+      else brand_summary[product.brand]=1
+      end
+    end
+    brand_summary
   end
 end
