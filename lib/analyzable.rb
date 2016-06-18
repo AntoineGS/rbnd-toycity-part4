@@ -6,9 +6,11 @@ module Analyzable
   end
 
   def print_report(products)
+    output = String.new
     products.each do |product|
-      return "ID: #{product.id}, Product: #{product.name}, Brand: #{product.brand}, Price: #{product.price}"
+      output << "ID: #{product.id}, Product: #{product.name}, Brand: #{product.brand}, Price: #{product.price} \n"
     end
+    output
   end
 
   def count_by_brand(products)

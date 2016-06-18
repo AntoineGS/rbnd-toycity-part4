@@ -53,14 +53,6 @@ class Udacidata
     reject
   end
 
-  def self.find_by_brand(brand)
-    all.find{|product| product.brand == brand}
-  end
-
-  def self.find_by_name(name)
-    all.find{|product| product.name == name}
-  end
-
   def self.where(options={})
     case when options[:brand]
       all.select{|product| product.brand == options[:brand]}

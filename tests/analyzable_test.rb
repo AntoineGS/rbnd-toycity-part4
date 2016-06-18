@@ -34,7 +34,7 @@ class TestAnalyzable < MiniTest::Test
     actual = Analyzable::count_by_brand(Product.where(brand: "FindMyBrand"))
     assert_equal(expected, actual)
   end
-  
+
   def test_count_by_name_method_returns_hash
     Product.create(brand: "Lego", name: "FindMyName", price: "11.30")
     expected = { "FindMyName" => 1 }
