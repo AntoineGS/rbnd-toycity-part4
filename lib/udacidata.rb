@@ -38,11 +38,7 @@ class Udacidata
 
   def self.find(id)
     object = nil
-    begin
-      raise ProductNotFoundError, "Exception Raised: Product not found" unless object = all.find{|product| product.id == id}
-    rescue Exception => e
-      puts e.message
-    end
+    raise ProductNotFoundError, "Exception Raised: Product not found" unless object = all.find{|product| product.id == id}
     object
   end
 
