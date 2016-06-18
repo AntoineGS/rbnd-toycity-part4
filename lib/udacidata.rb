@@ -76,4 +76,13 @@ class Udacidata
       csv << ["id", "brand", "product", "price"]
     end
   end
+
+  def update(options={})
+    options.each do |key,value|
+      self.instance_variable_set("@#{key}", value)
+    end
+    self.class.destroy(self.id)
+    self.class.create(id: self.id, brand: self.brand, name: self.name, price: self.price)
+    self
+  end
 end
